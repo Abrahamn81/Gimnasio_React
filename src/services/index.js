@@ -65,6 +65,27 @@ export const getUserDataService = async ({ id, token }) => {
   return json.data;
 };
 
+//funcioón para editar usuario
+export const editUserService = async ({ id, email, name, token }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/user/${id}/details`,
+    {
+      method: "PUT",
+      body: JSON.stringify({ email, name }),
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+  return json.data;
+};
+
 //petición al backend de un ejercicio
 export const singleExerciseService = async (id) => {
   const response = await fetch(

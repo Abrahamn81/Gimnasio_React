@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ErrorMessage } from "../components/ErrorMessage";
 import { useUser } from "../hooks/useUser";
 
@@ -14,6 +14,17 @@ export const UserPage = () => {
       <h2>Nombre: {user.name}</h2>
       <p>Email: {user.email}</p>
       <p>Fecha de registro: {new Date(user.createdAt).toDateString()}</p>
+      {user ? (
+        <section className="editUser-button">
+          <ul className="btn-editUser">
+            <li>
+              <Link to={`/user/${user.id}/edit`} state={user}>
+                <button className="edit-button" title="Editar usuario"></button>
+              </Link>
+            </li>
+          </ul>
+        </section>
+      ) : null}
     </section>
   );
 };

@@ -12,6 +12,7 @@ import { EditExercisePage } from "./pages/EditExercisePage";
 import { UserPage } from "./pages/UserPage";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+import { EditUserPage } from "./pages/EditUserPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/exercises" element={<NewExercisePage />} />
           <Route path="/exercises/:id/edit" element={<EditExercisePage />} />
           <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/user/:id/edit" element={<EditUserPage />} />
           {/*en caso de no encontrar alguna de las rutas anteriores nos avisa del error*/}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
