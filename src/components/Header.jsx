@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import React from "react";
 import { Auth } from "./Auth";
 
 export const Header = () => {
@@ -9,9 +8,6 @@ export const Header = () => {
       <nav>
         <Auth />
       </nav>
-      <h2>
-        <Link to="/">Volver atrás</Link>
-      </h2>
     </header>
   );
 };
