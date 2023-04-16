@@ -18,6 +18,7 @@ export const NewExercise = ({ addExercise, categories }) => {
       setSending(true);
 
       const data = new FormData(e.target);
+      console.log("data", data);
       idNewExercise = await sendNewExerciseService({ data, token });
 
       e.target.reset();

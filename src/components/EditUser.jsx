@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { NotificationManager } from "react-notifications";
 
-export const EditUser = (id, user) => {
+export const EditUser = ({ id }) => {
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
-  const { token } = useContext(AuthContext);
+  const { user, token } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({
     email: user.email,
     name: user.name,
@@ -24,7 +24,6 @@ export const EditUser = (id, user) => {
 
     try {
       setSending(true);
-
       const data = new FormData(e.target);
       const [email, name] = data.values();
       await editUserService({
@@ -33,13 +32,12 @@ export const EditUser = (id, user) => {
         name,
         token,
       });
-      //e.target.reset();
     } catch {
       setError(error.message);
     } finally {
       setSending(false);
       NotificationManager.success("Usuario editado correctamente", "", 6000);
-      navigate(`/user/${id}/details`);
+      navigate(`/user/${id}`);
     }
   };
   return (

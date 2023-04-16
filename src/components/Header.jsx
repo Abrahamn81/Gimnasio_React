@@ -10,7 +10,13 @@ export const Header = () => {
         <Auth />
       </nav>
       <h2>
-        <Link to="/">Volver atrás</Link>
+        {/*         <Link to="/">Volver al listado de ejercicios</Link> */}
+        <Link to="/">
+          <button
+            className="start-button"
+            title="Volver al listado de ejercicios"
+          ></button>
+        </Link>
       </h2>
     </header>
   );

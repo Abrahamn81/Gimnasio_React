@@ -10,19 +10,15 @@ export const UserPage = () => {
   if (error) return <ErrorMessage message={error} />;
 
   return (
-    <section>
+    <section className="user">
       <h2>Nombre: {user.name}</h2>
       <p>Email: {user.email}</p>
       <p>Fecha de registro: {new Date(user.createdAt).toDateString()}</p>
       {user ? (
         <section className="editUser-button">
-          <ul className="btn-editUser">
-            <li>
-              <Link to={`/user/${user.id}/edit`} state={user}>
-                <button className="edit-button" title="Editar usuario"></button>
-              </Link>
-            </li>
-          </ul>
+          <Link to={`/user/${user.id}/edit`}>
+            <button className="edit-button" title="Editar usuario"></button>
+          </Link>
         </section>
       ) : null}
     </section>

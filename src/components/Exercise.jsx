@@ -1,7 +1,11 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { deleteExerciseService, likeExerciseService } from "../services";
+import {
+  deleteExerciseService,
+  deleteLikeExerciseService,
+  likeExerciseService,
+} from "../services";
 import { NotificationManager } from "react-notifications";
 
 export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
@@ -33,13 +37,27 @@ export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
     try {
       await likeExerciseService({ id, token });
       if (updateLikeExercise) {
-        updateLikeExercise(id);
+        updateLikeExercise(id, true);
       } else {
         navigate("/");
       }
     } catch (error) {
       NotificationManager.error(error.message, "", 6000);
       //setError(error.message);
+    }
+  };
+
+  // función para eliminar un like
+  const deleteLikeExercise = async (id) => {
+    try {
+      await deleteLikeExerciseService({ id, token });
+      if (updateLikeExercise) {
+        updateLikeExercise(id, false);
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      NotificationManager.error(error.message, "", 6000);
     }
   };
 
@@ -92,13 +110,23 @@ export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
         <section className="section-buttons">
           <ul className="btn-exercise">
             <li>
-              <button
-                title="Like"
-                className="like-button"
-                onClick={() => {
-                  likeExercise(exercise.id);
-                }}
-              ></button>
+              {exercise.userLikes === 0 ? (
+                <button
+                  title="Like"
+                  className="like-button"
+                  onClick={() => {
+                    likeExercise(exercise.id);
+                  }}
+                ></button>
+              ) : (
+                <button
+                  title="noLike"
+                  className="nolike-button"
+                  onClick={() => {
+                    deleteLikeExercise(exercise.id);
+                  }}
+                ></button>
+              )}
             </li>
           </ul>
         </section>

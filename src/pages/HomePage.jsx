@@ -29,6 +29,11 @@ export const HomePage = () => {
           <Link to={"/exercises"}>
             <button className="custom-button">Nuevo ejercicio</button>
           </Link>
+          <Link to={"/users"}>
+            <button className="users-button custom-button">
+              Listado de usuarios
+            </button>
+          </Link>
         </section>
       ) : null}
       <CategoryExercise

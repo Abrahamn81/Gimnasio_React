@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 export const EditExercise = ({ id, exercise, categories }) => {
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
+  const [image, setImage] = useState();
   const { token } = useContext(AuthContext);
   const [exerciseInfo, setExerciseInfo] = useState({
     name: exercise.name,
     category: exercise.category,
-    img: "",
+    img: exercise.img,
     description: exercise.description,
   });
   const navigate = useNavigate();
@@ -26,18 +27,8 @@ export const EditExercise = ({ id, exercise, categories }) => {
 
     try {
       setSending(true);
-
       const data = new FormData(e.target);
-      const [name, category, img, description] = data.values();
-      await editExerciseService({
-        id,
-        name,
-        category,
-        img,
-        description,
-        token,
-      });
-      //e.target.reset();
+      await editExerciseService({ id, data, token });
     } catch {
       setError(error.message);
     } finally {
@@ -83,7 +74,29 @@ export const EditExercise = ({ id, exercise, categories }) => {
           </li>
           <li>
             <label htmlFor="image">Imagen:</label>
-            <input type="file" id="img" name="img" accept="image/*" />
+            {image ? (
+              <figure>
+                <img
+                  src={URL.createObjectURL(image)}
+                  alt="Preview"
+                  style={{ width: "100px" }}
+                />
+              </figure>
+            ) : null}
+            {exercise.img && !image ? (
+              <img
+                alt=""
+                src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.img}`}
+                style={{ width: "100px" }}
+              ></img>
+            ) : null}
+            <input
+              type="file"
+              id="img"
+              name="img"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
           </li>
           <li>
             <label htmlFor="text">Descripción:</label>

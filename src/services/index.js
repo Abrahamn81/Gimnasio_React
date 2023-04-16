@@ -50,7 +50,24 @@ export const getMyUserDataService = async ({ token }) => {
 
 // función para leer los datos de cualquier usuario
 export const getUserDataService = async ({ id, token }) => {
-  const response = await fetch(`${process.env.REACT_APP_BACKEND}/user/${id}`, {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: token,
+    },
+  });
+
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+  return json.data;
+};
+
+// función para obtener todos los usuarios
+export const getAllUsersService = async ({ token }) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users`, {
     method: "GET",
     headers: {
       Authorization: token,
@@ -67,17 +84,14 @@ export const getUserDataService = async ({ id, token }) => {
 
 //funcioón para editar usuario
 export const editUserService = async ({ id, email, name, token }) => {
-  const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/user/${id}/details`,
-    {
-      method: "PUT",
-      body: JSON.stringify({ email, name }),
-      headers: {
-        Authorization: token,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({ email, name }),
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+  });
   const json = await response.json();
 
   if (!response.ok) {
@@ -86,10 +100,33 @@ export const editUserService = async ({ id, email, name, token }) => {
   return json.data;
 };
 
+//función para eliminar un usuario
+export const deleteUserService = async ({ id, token }) => {
+  const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: token,
+      "Content-Type": "application/json",
+    },
+  });
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+};
+
 //petición al backend de un ejercicio
-export const singleExerciseService = async (id) => {
+export const singleExerciseService = async ({ id, token }) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/exercises/${id}`
+    `${process.env.REACT_APP_BACKEND}/exercises/${id}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    }
   );
 
   const json = await response.json();
@@ -100,9 +137,16 @@ export const singleExerciseService = async (id) => {
   return json.data;
 };
 //petición al backend de todos los ejercicios
-export const getAllExercisesService = async (category = "") => {
+export const getAllExercisesService = async ({ category = "", token }) => {
   const response = await fetch(
-    `${process.env.REACT_APP_BACKEND}/exercises?category=${category}`
+    `${process.env.REACT_APP_BACKEND}/exercises?category=${category}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    }
   );
 
   const json = await response.json();
@@ -131,22 +175,14 @@ export const sendNewExerciseService = async ({ data, token }) => {
 };
 
 // función que se encarga de enviar el formulario de editar ejercicio
-export const editExerciseService = async ({
-  id,
-  name,
-  category,
-  img,
-  description,
-  token,
-}) => {
+export const editExerciseService = async ({ id, data, token }) => {
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND}/exercises/${id}`,
     {
       method: "PUT",
-      body: JSON.stringify({ name, category, img, description }),
+      body: data,
       headers: {
         Authorization: token,
-        "Content-Type": "application/json",
       },
     }
   );
@@ -182,6 +218,24 @@ export const likeExerciseService = async ({ id, token }) => {
     `${process.env.REACT_APP_BACKEND}/exercises/${id}/likes`,
     {
       method: "POST",
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+  const json = await response.json();
+
+  if (!response.ok) {
+    throw new Error(json.message);
+  }
+};
+
+// función para eliminar likes
+export const deleteLikeExerciseService = async ({ id, token }) => {
+  const response = await fetch(
+    `${process.env.REACT_APP_BACKEND}/exercises/${id}/likes`,
+    {
+      method: "DELETE",
       headers: {
         Authorization: token,
       },

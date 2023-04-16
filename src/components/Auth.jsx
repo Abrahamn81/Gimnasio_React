@@ -1,16 +1,17 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export const Auth = () => {
   const { user, logout } = useContext(AuthContext);
+
   return user ? (
     <p>
       🙃
       <Link to={`/user/${user.id}`}>{user.name}</Link>
-      <button className="custom-button" onClick={() => logout()}>
+      <NavLink className="custom-button" to={"/"} onClick={() => logout()}>
         Cerrar sesión
-      </button>
+      </NavLink>
     </p>
   ) : (
     <ul>

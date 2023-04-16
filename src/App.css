@@ -128,6 +128,9 @@ body main section.exercises article .delete-button {
 body main section.exercises article .like-button {
   background-image: url("/public/like-button.png");
 }
+body main section.exercises article .nolike-button {
+  background-image: url("/public/noLike-button.png");
+}
 
 /*DETALLES DE UN EJERCICIO*/
 body main section.exercise article {
@@ -184,6 +187,45 @@ body main section.exercise article .delete-button {
 }
 body main section.exercise article .like-button {
   background-image: url("/public/like-button.png");
+}
+body main section.exercise article .nolike-button {
+  background-image: url("/public/noLike-button.png");
+}
+
+body header .start-button {
+  font-size: 0;
+  height: 4rem;
+  width: 3rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0.2rem;
+  margin-top: 1rem;
+  background-image: url("/public/start-button.png");
+}
+
+body main section.users .delete-button {
+  display: inline-block;
+  font-size: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-size: contain;
+  background-color: transparent;
+  padding: 0.2rem;
+  margin: 0;
+  background-image: url("/public/delete-button.png");
+}
+body main section.user .edit-button {
+  display: inline-block;
+  font-size: 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-size: contain;
+  background-color: transparent;
+  padding: 0.2rem;
+  margin: 0;
+  background-image: url("/public/edit-button.png");
 }
 
 /* body main article .category {

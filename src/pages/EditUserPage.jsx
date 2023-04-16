@@ -7,7 +7,7 @@ export const EditUserPage = () => {
   const { id } = useParams();
   const { loading, error } = useUser(id);
 
-  if (loading) return <p>Cargando ejercicio...</p>;
+  if (loading) return <p>Cargando usuario...</p>;
   if (error) return <ErrorMessage message={error} />;
 
   return <EditUser id={id} />;
