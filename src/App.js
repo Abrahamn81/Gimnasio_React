@@ -12,6 +12,7 @@ import { EditExercisePage } from "./pages/EditExercisePage";
 import { UserPage } from "./pages/UserPage";
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { EditUserPage } from "./pages/EditUserPage";
 import { UserListPage } from "./pages/UserListPage";
 

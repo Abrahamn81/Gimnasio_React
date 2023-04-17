@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { confirmAlert } from "react-confirm-alert";
 import {
   deleteExerciseService,
   deleteLikeExerciseService,
@@ -97,8 +98,19 @@ export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
                 title="Eliminar ejercicio"
                 className="delete-button"
                 onClick={() => {
-                  if (window.confirm("Confirmamos el borrado?"))
-                    deleteExercise(exercise.id);
+                  confirmAlert({
+                    title: "Borrar ejercicio",
+                    message: `¿Estás seguro que desea borrar el ejercicio ${exercise.name}?`,
+                    buttons: [
+                      {
+                        label: "Aceptar",
+                        onClick: () => deleteExercise(exercise.id),
+                      },
+                      {
+                        label: "Cancelar",
+                      },
+                    ],
+                  });
                 }}
               ></button>
             </li>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { NotificationManager } from "react-notifications";
 import { deleteUserService } from "../services";
+import { confirmAlert } from "react-confirm-alert";
 
 export const User = ({ user, removeUser }) => {
   const { token } = useContext(AuthContext);
@@ -32,12 +33,19 @@ export const User = ({ user, removeUser }) => {
         title="Eliminar usuario"
         className="delete-button"
         onClick={() => {
-          if (
-            window.confirm(
-              `¿Está seguro de que desea eliminar al usuario ${user.name}?`
-            )
-          )
-            deleteUser(user.id);
+          confirmAlert({
+            title: "Borrar usuario",
+            message: `¿Estás seguro que desea borrar el usuario ${user.name}?`,
+            buttons: [
+              {
+                label: "Aceptar",
+                onClick: () => deleteUser(user.id),
+              },
+              {
+                label: "Cancelar",
+              },
+            ],
+          });
         }}
       ></button>
     </section>
