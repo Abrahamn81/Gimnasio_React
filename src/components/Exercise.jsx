@@ -8,6 +8,7 @@ import {
   likeExerciseService,
 } from "../services";
 import { NotificationManager } from "react-notifications";
+import { confirmAlert } from "react-confirm-alert";
 
 export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
   const { user, token } = useContext(AuthContext);
@@ -64,23 +65,23 @@ export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
 
   return (
     <article>
-      <p className="category">
-        <span>{exercise.category}</span>
-      </p>
-      <h2>
-        <Link to={`/exercises/${exercise.id}/details`}>{exercise.name}</Link>
-      </h2>
-
       <section className="img-description">
         {exercise.img ? (
           <img
-            alt=""
+            alt="Imagen del ejercicio"
             src={`${process.env.REACT_APP_BACKEND}/uploads/${exercise.img}`}
           ></img>
         ) : null}
+
+        <h2>
+          <Link to={`/exercises/${exercise.id}/details`}>{exercise.name}</Link>
+        </h2>
+        <p className="category">
+          <span>{exercise.category}</span>
+        </p>
         <p className="description">{exercise.description}</p>
+        <p className="likes">🔥 {exercise.likes} likes</p>
       </section>
-      <p className="likes">⭐ Likes: {exercise.likes}</p>
 
       {user !== null && user.admin === 1 ? (
         <section className="section-buttons">

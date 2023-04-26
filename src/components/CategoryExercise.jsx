@@ -10,7 +10,7 @@ export const CategoryExercise = ({ setCategory, category, categories }) => {
       <Select
         isClearable
         options={categories}
-        placeholder="Escoge una categoría..."
+        placeholder="Escoge categoría..."
         onChange={handleChange}
         autoFocus={true}
       />

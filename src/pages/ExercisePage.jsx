@@ -12,7 +12,6 @@ export const ExercisePage = () => {
 
   return (
     <section className="exercise">
-      <h1>Ejercicio:</h1>
       <Exercise exercise={exercise} updateLikeExercise={updateLikeExercise} />
     </section>
   );

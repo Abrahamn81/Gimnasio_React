@@ -10,7 +10,7 @@ export const UserPage = () => {
   if (error) return <ErrorMessage message={error} />;
 
   return (
-    <section className="user">
+    <section className="user" class="user">
       <h2>Nombre: {user.name}</h2>
       <p>Email: {user.email}</p>
       <p>Fecha de registro: {new Date(user.createdAt).toDateString()}</p>

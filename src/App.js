@@ -14,6 +14,7 @@ import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { EditUserPage } from "./pages/EditUserPage";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { UserListPage } from "./pages/UserListPage";
 
 function App() {

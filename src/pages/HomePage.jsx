@@ -21,7 +21,12 @@ export const HomePage = () => {
   const { user } = useContext(AuthContext);
 
   if (error) return <ErrorMessage message={error} />;
-  if (!user) return <p>Inicia sesión</p>;
+  if (!user)
+    return (
+      <figure className="foto-portada">
+        <img src="/culturista.png" alt="foto culturista" />
+      </figure>
+    );
   return (
     <section>
       {user !== null && user.admin === 1 ? (

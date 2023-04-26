@@ -74,6 +74,13 @@ export const EditExercise = ({ id, exercise, categories }) => {
           </li>
           <li>
             <label htmlFor="image">Imagen:</label>
+            <input
+              type="file"
+              id="img"
+              name="img"
+              accept="image/*"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
             {image ? (
               <figure>
                 <img
@@ -90,13 +97,6 @@ export const EditExercise = ({ id, exercise, categories }) => {
                 style={{ width: "100px" }}
               ></img>
             ) : null}
-            <input
-              type="file"
-              id="img"
-              name="img"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
           </li>
           <li>
             <label htmlFor="text">Descripción:</label>

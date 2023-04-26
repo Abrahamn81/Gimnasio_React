@@ -26,6 +26,8 @@ export const LoginPage = () => {
   return (
     <section>
       <h1>Iniciar sesión</h1>
+      <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo-m.png" />
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
       <form onSubmit={handleForm}>
         <fieldset>
           <label htmlFor="email">Email:</label>

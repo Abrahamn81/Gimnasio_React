@@ -77,7 +77,7 @@ export const RegisterPage = () => {
             <option value="No admin">No administrador</option>
           </select>
         </fieldset> */}
-        <button>Register</button>
+        <button> Continuar </button>
         {error ? <p>{error}</p> : null}
       </form>
     </section>
