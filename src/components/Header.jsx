@@ -9,9 +9,10 @@ export const Header = () => {
       <nav>
         <Auth />
       </nav>
-      <h2>
-        <Link to="/"> Home </Link>
-      </h2>
+
+      <Link to="/">
+        <button className="logo-m"></button>
+      </Link>
     </header>
   );
 };

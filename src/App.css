@@ -44,11 +44,6 @@ header nav ul {
   align-content: space-between;
 }
 
-header h2 {
-  font-size: medium;
-  margin-top: 1rem;
-}
-
 header a:hover {
   background-color: goldenrod;
   border: 1px solid goldenrod;
@@ -64,6 +59,14 @@ header a {
   text-decoration: none;
   padding: 2px 5px;
   font-weight: bold;
+}
+
+header .logo-m {
+  height: 3rem;
+  width: 3rem;
+  background-size: contain;
+  background-color: transparent;
+  background-image: url("/public/logo-m.png");
 }
 
 /* MAIN */
