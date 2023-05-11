@@ -82,7 +82,7 @@ export const getAllUsersService = async ({ token }) => {
   return json.data;
 };
 
-//funcioón para editar usuario
+//función para editar usuario
 export const editUserService = async ({ id, email, name, token }) => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND}/users/${id}`, {
     method: "PUT",

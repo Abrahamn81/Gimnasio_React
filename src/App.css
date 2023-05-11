@@ -74,6 +74,16 @@ main {
   flex-grow: 1;
 }
 
+main .filtro-checkbox {
+  font-size: 1.4rem;
+}
+main .checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+}
+
 main fieldset {
   border: none;
 }

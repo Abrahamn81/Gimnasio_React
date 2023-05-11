@@ -7,12 +7,15 @@ export const useExercises = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [category, setCategory] = useState("");
+  const [favorites, setFavorites] = useState("");
   const { token } = useContext(AuthContext);
   useEffect(() => {
-    const loadExercises = async (category) => {
+    const loadExercises = async (category, favorites) => {
       try {
         setLoading(true);
-        const data = await getAllExercisesService({ category, token });
+        let data = await getAllExercisesService({ category, token });
+
+        if (favorites) data = data.filter((x) => x.userLikes === 1);
         setExercises(data);
       } catch (error) {
         setError(error.message);
@@ -22,11 +25,11 @@ export const useExercises = () => {
     };
 
     if (token) {
-      loadExercises(category);
+      loadExercises(category, favorites);
     } else {
       setExercises([]);
     }
-  }, [category, token]);
+  }, [category, favorites, token]);
 
   //actualizamos el estado con los todos los ejercicios con id diferente a la del ejercicio borrado
   const removeExercise = (id) => {
@@ -53,6 +56,8 @@ export const useExercises = () => {
     removeExercise,
     updateLikeExercise,
     setCategory,
+    setFavorites,
     category,
+    favorites,
   };
 };

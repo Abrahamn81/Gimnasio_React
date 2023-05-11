@@ -6,6 +6,7 @@ import { ExercisesList } from "../components/ExercisesList";
 import { useCategories } from "../const/categories";
 import { AuthContext } from "../context/AuthContext";
 import { useExercises } from "../hooks/useExercises";
+import { MyLikes } from "../components/MyLikes";
 
 export const HomePage = () => {
   const {
@@ -15,6 +16,8 @@ export const HomePage = () => {
     removeExercise,
     setCategory,
     category,
+    setFavorites,
+    favorites,
     updateLikeExercise,
   } = useExercises("");
   const { categories } = useCategories();
@@ -40,6 +43,9 @@ export const HomePage = () => {
             </button>
           </Link>
         </section>
+      ) : null}
+      {user !== null && user.admin !== 1 ? (
+        <MyLikes favorites={favorites} setFavorites={setFavorites} />
       ) : null}
       <CategoryExercise
         setCategory={setCategory}

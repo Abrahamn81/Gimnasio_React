@@ -44,7 +44,6 @@ export const Exercise = ({ exercise, removeExercise, updateLikeExercise }) => {
       }
     } catch (error) {
       NotificationManager.error(error.message, "", 6000);
-      //setError(error.message);
     }
   };
 

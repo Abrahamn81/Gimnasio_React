@@ -71,12 +71,6 @@ export const RegisterPage = () => {
             onChange={(e) => setPass2(e.target.value)}
           ></input>
         </fieldset>
-        {/*         <fieldset>
-          <select name="admin">
-            <option value="admin">Administrador</option>
-            <option value="No admin">No administrador</option>
-          </select>
-        </fieldset> */}
         <button> Continuar </button>
         {error ? <p>{error}</p> : null}
       </form>
