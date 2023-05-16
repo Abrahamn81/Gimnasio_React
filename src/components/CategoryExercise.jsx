@@ -1,5 +1,5 @@
 import Select from "react-select";
-export const CategoryExercise = ({ setCategory, category, categories }) => {
+export const CategoryExercise = ({ setCategory, categories }) => {
   const handleChange = async (selectedOption) => {
     let value = selectedOption ? selectedOption.value : "";
     setCategory(value);

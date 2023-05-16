@@ -1,4 +1,4 @@
-export const MyLikes = ({ favorites, setFavorites }) => {
+export const MyLikes = ({ setFavorites }) => {
   const handleChange = async (e) => {
     let checked = e.target.checked;
     setFavorites(checked);

@@ -15,9 +15,7 @@ export const HomePage = () => {
     error,
     removeExercise,
     setCategory,
-    category,
     setFavorites,
-    favorites,
     updateLikeExercise,
   } = useExercises("");
   const { categories } = useCategories();
@@ -45,13 +43,9 @@ export const HomePage = () => {
         </section>
       ) : null}
       {user !== null && user.admin !== 1 ? (
-        <MyLikes favorites={favorites} setFavorites={setFavorites} />
+        <MyLikes setFavorites={setFavorites} />
       ) : null}
-      <CategoryExercise
-        setCategory={setCategory}
-        category={category}
-        categories={categories}
-      />
+      <CategoryExercise setCategory={setCategory} categories={categories} />
       <h1>Lista de Ejercicios</h1>
       {loading ? (
         <p>Cargando</p>
